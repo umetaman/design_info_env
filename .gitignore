@@ -3,3 +3,6 @@
 
 # Builds
 *.apk
+
+# Asset
+*.asset
