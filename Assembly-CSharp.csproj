@@ -171,6 +171,8 @@
     <Compile Include="Assets\GoogleCardBoard\GoogleVR\Scripts\Utilities\SuppressMemoryAllocationErrorAttribute.cs" />
     <Compile Include="Assets\GoogleCardBoard\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
     <Compile Include="Assets\Scripts\Model.cs" />
+    <Compile Include="Assets\Scripts\ParamView.cs" />
+    <Compile Include="Assets\Scripts\Test\Rotate.cs" />
     <None Include="Assets\GoogleCardBoard\GoogleVR\Shaders\GvrUIOverlayFont.shader" />
     <None Include="Assets\GoogleCardBoard\GoogleVR\Shaders\GvrAdditiveOverlay.shader" />
     <None Include="Assets\GoogleCardBoard\GoogleVR\Shaders\GvrController.shader" />
