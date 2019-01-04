@@ -27,3 +27,4 @@
 - ノーマルモードとVRモードの切り替え
     - マウスでの操作は難しいというかできない
     - まずはノーマルモードでモデルを選択して、モデルビューのときにVRモードへ切り替わる。
+    - 参考 -> http://talesfromtherift.com/googlevr-cardboard-switch-between-normal-mode-and-vr-mode-at-run-time/
