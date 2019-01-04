@@ -9,6 +9,7 @@ public class BaseModel
     private int ID;
     private string Name;
     private string Path;
+    private float Scale;
 
     public BaseModel(string _Name, string _Path)
     {
