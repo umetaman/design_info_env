@@ -6,58 +6,24 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour {
 
-    private int Width;
-    private int Height;
-    private Vector2Int ScreenSize;
-
     [SerializeField]
     private Vector3 MoveVectorScale = new Vector3(0.03f, 0.03f, 0.03f);
 
 	// Use this for initialization
 	void Start () {
-        //スクリーンの大きさ取得
-        Width = Screen.width;
-        Height = Screen.height;
-
-        ScreenSize = new Vector2Int(Width, Height);
-
-        Debug.Log("ScreenSize: (" + Width + ", " + Height + ")");
-	}
+        UnityEngine.XR.XRSettings.enabled = false;
+    }
 	
 	// Update is called once per frame
-	void Update () { 
-        //マウスの座標
-        Vector2 MousePosition = Input.mousePosition;
+	void Update () {
+        Vector3 InputAxis = GetJoyConAxis();
 
-        Vector2 MappedVec = new Vector2(
-            Map(MousePosition.x, 0, Width, -1, 1),
-            Map(MousePosition.y, 0, Height, -1, 1)
-        );
-
-        if(MappedVec.x < 0)
-        {
-            MappedVec.x = -MoveVectorScale.x * (MappedVec.x * MappedVec.x);
-        }
-        else if(MappedVec.x > 0)
-        {
-            MappedVec.x = MoveVectorScale.x * (MappedVec.x * MappedVec.x);
-        }
-
-        if (MappedVec.y < 0)
-        {
-            MappedVec.y = -MoveVectorScale.y * (MappedVec.y * MappedVec.y);
-        }
-        else if (MappedVec.y > 0)
-        {
-            MappedVec.y = MoveVectorScale.y * (MappedVec.y * MappedVec.y);
-        }
-
-        Debug.Log("MappedVec: " + MappedVec);
+        //text.text = InputAxis.ToString();
 
         transform.position = new Vector3(
-            transform.position.x + MappedVec.x,
-            transform.position.y + MappedVec.y,
-            -10
+            transform.position.x + InputAxis.x * MoveVectorScale.x,
+            transform.position.y + InputAxis.y * MoveVectorScale.y,
+            transform.position.z + InputAxis.z * MoveVectorScale.z
         );
     }
 
@@ -74,5 +40,27 @@ public class PlayerControl : MonoBehaviour {
         }
 
         return ((Value - InputMin) / (InputMax - InputMin)) * (OutputMax - OutputMin) + OutputMin;
+    }
+
+    public Vector3 GetJoyConAxis()
+    {
+        float x = 0.0f;
+        float y = 0.0f;
+        float z = 0.0f;
+
+        if (Input.GetKey(KeyCode.Joystick1Button13))
+        {
+            z = 1.0f;
+        }
+
+        if (Input.GetKey(KeyCode.Joystick1Button1))
+        {
+            z = -1.0f;
+        }
+
+        x = Input.GetAxis("Axis 6");
+        y = Input.GetAxis("Axis 5");
+
+        return new Vector3(x * -1, y * -1, z);
     }
 }
